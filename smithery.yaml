@@ -1,0 +1,28 @@
+# Smithery configuration for Reddit MCP
+
+# The unique identifier for this MCP server
+name: "@practicaltools/reddit-mcp-server"
+
+# A brief description of the server
+description: A Reddit MCP server that wraps Apify actors to search Reddit and find leads.
+
+# The transport protocol used by the server
+transport: stdio
+
+# The command used to run the server
+command: npx
+args:
+  - -y
+  - "@practicaltools/reddit-mcp-server"
+
+# Environment variables required by the server
+env:
+  APIFY_API_TOKEN:
+    description: Your Apify API Token (https://console.apify.com/account/integrations)
+    required: true
+
+# Metadata for discovery
+categories:
+  - Social Media
+  - Lead Generation
+  - Search

@@ -16,12 +16,8 @@ dotenv.config({ quiet: true });
 
 const APIFY_API_TOKEN = process.env.APIFY_API_TOKEN;
 
-if (!APIFY_API_TOKEN) {
-    throw new Error("APIFY_API_TOKEN not found. Please set APIFY_API_TOKEN in your environment.");
-}
-
 const apifyClient = new ApifyClient({
-    token: APIFY_API_TOKEN,
+    token: APIFY_API_TOKEN || "dummy-token", // Use dummy token to allow initialization
 });
 
 const server = new Server(
@@ -81,6 +77,9 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
     const { name, arguments: args } = request.params;
 
     try {
+        if (!APIFY_API_TOKEN) {
+            throw new Error("APIFY_API_TOKEN is not set. Please provide your Apify API Token in the environment variables.");
+        }
         if (name === "reddit_fast_search") {
             const { query, subreddits, limit = 25, sort = "new" } = args as any;
 
