@@ -1,6 +1,6 @@
 {
     "name": "@practicaltools/reddit-mcp-server",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "description": "Reddit MCP Server via Apify",
     "main": "dist/index.js",
     "bin": {
@@ -8,7 +8,9 @@
     },
     "files": [
         "dist",
-        "smithery.yaml"
+        "smithery.yaml",
+        "server-card.json",
+        ".well-known"
     ],
     "type": "module",
     "scripts": {

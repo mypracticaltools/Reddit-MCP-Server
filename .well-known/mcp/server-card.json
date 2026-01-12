@@ -1,0 +1,33 @@
+{
+    "specVersion": "1.0",
+    "name": "Reddit MCP Server",
+    "description": "An MCP server that allows AI agents to search Reddit or find specific leads by delegating the scraping task to Apify cloud actors.",
+    "version": "1.0.2",
+    "author": "Practical Tools",
+    "mcpServers": [
+        {
+            "name": "reddit-mcp",
+            "description": "Reddit search and lead monitoring via Apify",
+            "transport": {
+                "type": "stdio",
+                "command": "npx",
+                "args": [
+                    "-y",
+                    "@practicaltools/reddit-mcp-server"
+                ]
+            },
+            "env": {
+                "APIFY_API_TOKEN": {
+                    "description": "Your Apify API Token",
+                    "required": true
+                }
+            }
+        }
+    ],
+    "categories": [
+        "Social Media",
+        "Search",
+        "Lead Generation"
+    ],
+    "homepage": "https://github.com/ohadaviv/Reddit-MCP-Server"
+}
