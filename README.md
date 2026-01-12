@@ -19,14 +19,14 @@ Choose your platform to install **Reddit MCP** in seconds:
 ### 1. Claude Desktop, Cursor, or Windsurf
 Uses **Smithery** to automatically configure your apps:
 
-- **Claude Desktop:** `npx @smithery/cli install reddit-mcp --config "{ \"APIFY_API_TOKEN\": \"YOUR_TOKEN\" }"`
-- **Cursor IDE:** `npx @smithery/cli install reddit-mcp --client cursor --config "{ \"APIFY_API_TOKEN\": \"YOUR_TOKEN\" }"`
-- **Windsurf:** `npx @smithery/cli install reddit-mcp --client windsurf --config "{ \"APIFY_API_TOKEN\": \"YOUR_TOKEN\" }"`
+- **Claude Desktop:** `npx @smithery/cli install @practicaltools/reddit-mcp-server --config "{ \"APIFY_API_TOKEN\": \"YOUR_TOKEN\" }"`
+- **Cursor IDE:** `npx @smithery/cli install @practicaltools/reddit-mcp-server --client cursor --config "{ \"APIFY_API_TOKEN\": \"YOUR_TOKEN\" }"`
+- **Windsurf:** `npx @smithery/cli install @practicaltools/reddit-mcp-server --client windsurf --config "{ \"APIFY_API_TOKEN\": \"YOUR_TOKEN\" }"`
 
 ### 2. Claude Code (CLI)
 Just run this one-liner in your terminal:
 ```bash
-claude-code --mcp reddit-mcp="node /ABSOLUTE/PATH/TO/PROJECT/build/index.js" --env APIFY_API_TOKEN=YOUR_TOKEN
+claude-code --mcp @practicaltools/reddit-mcp-server="node /ABSOLUTE/PATH/TO/PROJECT/dist/index.js" --env APIFY_API_TOKEN=YOUR_TOKEN
 ```
 
 ### 3. VS Code (Copilot Agent)
@@ -34,9 +34,9 @@ Copy this to your `.vscode/mcp.json`:
 ```json
 {
   "mcpServers": {
-    "reddit-mcp": {
+    "@practicaltools/reddit-mcp-server": {
       "command": "node",
-      "args": ["/ABSOLUTE/PATH/TO/PROJECT/build/index.js"],
+      "args": ["/ABSOLUTE/PATH/TO/PROJECT/dist/index.js"],
       "env": { "APIFY_API_TOKEN": "YOUR_TOKEN" }
     }
   }
@@ -66,9 +66,9 @@ Add the following to your `claude_desktop_config.json`:
 ```json
 {
   "mcpServers": {
-    "reddit-mcp": {
+    "@practicaltools/reddit-mcp-server": {
       "command": "node",
-      "args": ["/ABSOLUTE/PATH/TO/PROJECT/build/index.js"],
+      "args": ["/ABSOLUTE/PATH/TO/PROJECT/dist/index.js"],
       "env": {
         "APIFY_API_TOKEN": "YOUR_APIFY_TOKEN"
       }
@@ -84,7 +84,7 @@ Add the following to your `claude_desktop_config.json`:
 4. Set:
    - **Name**: `Reddit Apify`
    - **Type**: `stdio`
-   - **Command**: `node /ABSOLUTE/PATH/TO/PROJECT/build/index.js`
+   - **Command**: `node /ABSOLUTE/PATH/TO/PROJECT/dist/index.js`
    - **Env**: Key=`APIFY_API_TOKEN`, Value=`YOUR_TOKEN`
 
 ### 3. Windsurf
@@ -98,9 +98,9 @@ Add the following to your `claude_desktop_config.json`:
 ```json
 {
   "mcpServers": {
-    "reddit-mcp": {
+    "@practicaltools/reddit-mcp-server": {
       "command": "node",
-      "args": ["/ABSOLUTE/PATH/TO/PROJECT/build/index.js"],
+      "args": ["/ABSOLUTE/PATH/TO/PROJECT/dist/index.js"],
       "env": {
         "APIFY_API_TOKEN": "YOUR_APIFY_TOKEN"
       }
@@ -113,7 +113,7 @@ Add the following to your `claude_desktop_config.json`:
 ### 5. Claude Code (CLI)
 When running `claude-code`, you can specify the MCP server:
 ```bash
-claude-code --mcp reddit-mcp="node /ABSOLUTE/PATH/TO/PROJECT/build/index.js" --env APIFY_API_TOKEN=YOUR_TOKEN
+claude-code --mcp @practicaltools/reddit-mcp-server="node /ABSOLUTE/PATH/TO/PROJECT/dist/index.js" --env APIFY_API_TOKEN=YOUR_TOKEN
 ```
 
 ### 6. ChatGPT & Lovable (via Bridge)
@@ -133,7 +133,7 @@ To use this server with agentic coding assistants like Antigravity:
 # 1. Install dependencies
 npm install
 
-# 2. Build for production (Generates build/index.js)
+# 2. Build for production (Generates dist/index.js)
 npm run build
 
 # 3. Running in dev mode
