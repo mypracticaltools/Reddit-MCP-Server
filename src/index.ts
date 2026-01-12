@@ -102,15 +102,18 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
             const run = await apifyClient.actor("practicaltools/apify-reddit-api").call(input);
             const { items } = await apifyClient.dataset(run.defaultDatasetId).listItems();
 
-            const formattedResults = items.map((item: any) => ({
-                title: item.title,
-                text: item.text?.substring(0, 500) + (item.text?.length > 500 ? "..." : ""),
-                url: item.url,
-                author: item.author,
-                subreddit: item.subreddit,
-                upvotes: item.upvotes,
-                createdAt: item.createdAt,
-            }));
+            const formattedResults = items.map((item: any) => {
+                const rawText = item.text || item.body || item.selftext || item.description || "";
+                return {
+                    title: item.title,
+                    text: rawText.length > 500 ? rawText.substring(0, 500) + "..." : rawText,
+                    url: item.url,
+                    author: item.author || "unknown",
+                    subreddit: item.subreddit || "unknown",
+                    upvotes: item.upvotes || 0,
+                    createdAt: item.createdAt,
+                };
+            });
 
             return {
                 content: [{ type: "text", text: JSON.stringify(formattedResults, null, 2) }],
@@ -140,15 +143,19 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
             const run = await apifyClient.actor("practicaltools/reddit-keyword-monitor").call(input);
             const { items } = await apifyClient.dataset(run.defaultDatasetId).listItems();
 
-            const formattedResults = items.map((item: any) => ({
-                title: item.title,
-                text: item.text?.substring(0, 500) + (item.text?.length > 500 ? "..." : ""),
-                url: item.url,
-                author: item.author,
-                subreddit: item.subreddit,
-                matchedKeywords: item.matchedKeywords,
-                type: item.dataType, // post or comment
-            }));
+            const formattedResults = items.map((item: any) => {
+                const rawText = item.text || item.body || item.selftext || item.description || "";
+                return {
+                    title: item.title,
+                    text: rawText.length > 500 ? rawText.substring(0, 500) + "..." : rawText,
+                    url: item.url,
+                    author: item.author || "unknown",
+                    subreddit: item.subreddit || "unknown",
+                    matchedKeywords: item.matchedKeywords,
+                    type: item.dataType || "post", // post or comment
+                    createdAt: item.createdAt,
+                };
+            });
 
             return {
                 content: [{ type: "text", text: JSON.stringify(formattedResults, null, 2) }],

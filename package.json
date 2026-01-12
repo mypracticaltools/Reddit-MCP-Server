@@ -1,6 +1,6 @@
 {
     "name": "@practicaltools/reddit-mcp-server",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "description": "Reddit MCP Server via Apify",
     "main": "dist/index.js",
     "bin": {

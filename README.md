@@ -1,22 +1,24 @@
-# Reddit MCP Server 
+# Reddit MCP Server 🤖
+[![NPM Version](https://img.shields.io/npm/v/@practicaltools/reddit-mcp-server?style=flat-square&color=cb3837)](https://www.npmjs.com/package/@practicaltools/reddit-mcp-server)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](https://opensource.org/licenses/MIT)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/mypracticaltools/Reddit-MCP-Server/build.yml?style=flat-square)](https://github.com/mypracticaltools/Reddit-MCP-Server/actions)
 
-An MCP server that allows AI agents to search Reddit or find specific leads by delegating the scraping task to Apify cloud actors.
+An MCP server that allows AI agents to search Reddit or find specific leads by delegating the scraping task to high-performance Apify cloud actors.
 
-## Features
+## 🌟 Key Features
 
-- **`reddit_fast_search`**: Quickly search for Reddit posts, comments, or users.
+- **`reddit_fast_search`**: Quickly search for Reddit posts, comments, or users. Best for general information gathering.
 - **`reddit_lead_monitor`**: Find high-intent leads or brand mentions while filtering out noise.
-
-### 🚀 Quick Links
-[Claude Desktop](#1-claude-desktop-macoswindows) | [Cursor IDE](#2-cursor-ide) | [Windsurf](#3-windsurf) | [VS Code](#4-vs-code-github-copilot-agent-mode) | [Claude Code](#5-claude-code-cli)
 
 ---
 
-## ⚡️ Frictionless Installation (Recommended)
+## ⚡️ Quick Install
 
-Since the package is published on NPM, you can install and run it without cloning the repository!
+Choose your platform to install **Reddit MCP** in seconds:
 
-### 1. Claude Desktop (macOS/Windows)
+<details>
+<summary><b>Claude Desktop (macOS/Windows)</b></summary>
+
 Add this to your `claude_desktop_config.json`:
 
 ```json
@@ -32,21 +34,30 @@ Add this to your `claude_desktop_config.json`:
   }
 }
 ```
+</details>
 
-### 2. Cursor IDE & Windsurf
+<details>
+<summary><b>Cursor & Windsurf</b></summary>
+
 1. Open **Settings** -> **MCP Servers**.
 2. Add a new server:
    - **Name**: `Reddit MCP`
    - **Type**: `stdio`
    - **Command**: `npx -y @practicaltools/reddit-mcp-server`
    - **Env**: `APIFY_API_TOKEN=YOUR_TOKEN`
+</details>
 
-### 3. Claude Code (CLI)
+<details>
+<summary><b>Claude Code (CLI)</b></summary>
+
 ```bash
 claude-code --mcp @practicaltools/reddit-mcp-server="npx -y @practicaltools/reddit-mcp-server" --env APIFY_API_TOKEN=YOUR_TOKEN
 ```
+</details>
 
-### 4. VS Code (Copilot Agent)
+<details>
+<summary><b>VS Code (Copilot Agent)</b></summary>
+
 Add to `.vscode/mcp.json`:
 ```json
 {
@@ -59,6 +70,7 @@ Add to `.vscode/mcp.json`:
   }
 }
 ```
+</details>
 
 ---
 
@@ -66,93 +78,35 @@ Add to `.vscode/mcp.json`:
 
 To use this server, you need an Apify API token.
 
-1.  **Sign up/Log in**: Go to [Apify Console](https://console.apify.com/).
-2.  **Navigate to Settings**: Click the **Settings** icon in the bottom-left sidebar.
-3.  **Integrations Tab**: Select the **Integrations** tab at the top.
-4.  **Copy Token**: You will see your **API Token** at the top of the page. Copy this string.
-
----
-
-## 🚀 Multi-Platform Setup
-
-### 1. Claude Desktop (macOS/Windows)
-Add this to your `claude_desktop_config.json`:
-- **macOS**: `~/Library/Application Support/Claude/claude_desktop_config.json`
-- **Windows**: `%APPDATA%\Claude\claude_desktop_config.json`
-
-```json
-{
-  "mcpServers": {
-    "reddit-mcp": {
-      "command": "npx",
-      "args": ["-y", "@practicaltools/reddit-mcp-server"],
-      "env": {
-        "APIFY_API_TOKEN": "YOUR_APIFY_TOKEN"
-      }
-    }
-  }
-}
-```
-
-### 2. Cursor IDE
-1. Open **Settings** -> **Cursor Settings**.
-2. Go to **Features** -> **MCP Servers**.
-3. Click **+ Add New MCP Server**.
-4. Set:
-   - **Name**: `Reddit MCP`
-   - **Type**: `stdio`
-   - **Command**: `npx -y @practicaltools/reddit-mcp-server`
-   - **Env**: Key=`APIFY_API_TOKEN`, Value=`YOUR_TOKEN`
-
-### 3. Windsurf
-1. Open **Settings** -> **MCP**.
-2. Click **Add Server**.
-3. Set **Command**: `npx -y @practicaltools/reddit-mcp-server`
-4. Add Environment Variable: `APIFY_API_TOKEN=YOUR_TOKEN`
-
-### 4. VS Code (GitHub Copilot Agent Mode)
-1. Ensure you have the **GitHub Copilot Chat** extension installed.
-2. Create/Update `.vscode/mcp.json`:
-```json
-{
-  "mcpServers": {
-    "reddit-mcp": {
-      "command": "npx",
-      "args": ["-y", "@practicaltools/reddit-mcp-server"],
-      "env": { "APIFY_API_TOKEN": "YOUR_TOKEN" }
-    }
-  }
-}
-```
-
-### 5. Claude Code (CLI)
-```bash
-claude-code --mcp @practicaltools/reddit-mcp-server="npx -y @practicaltools/reddit-mcp-server" --env APIFY_API_TOKEN=YOUR_TOKEN
-```
-
-### 6. ChatGPT & Lovable (via Bridge)
-ChatGPT and Lovable do not natively support external MCP servers yet. To use them, you can use a bridging tool like [mcp-bridge](https://github.com/lastmile-ai/mcp-bridge) which exposes the tools as GPT Actions or a local API that Lovable can interact with.
-
-### 7. Antigravity & Agentic Frameworks
-To use this server with agentic coding assistants like Antigravity, simply use the `npx` command in your agent's configuration. The agent will then be able to call `reddit_fast_search` and `reddit_lead_monitor` directly.
+1.  **Sign up/Log in**: [Apify Console](https://console.apify.com/).
+2.  **Settings**: Click the **Settings** icon in the bottom-left sidebar.
+3.  **Integrations**: Select the **Integrations** tab at the top.
+4.  **Copy Token**: Copy the string at the top of the page.
 
 ---
 
 ## 🛠 Local Development
 
-If you want to run the server from source:
+If you want to contribute or run from source:
 
 ```bash
-# 1. Install dependencies
+# Install dependencies
 npm install
 
-# 2. Build for production (Generates dist/index.js)
+# Build the project
 npm run build
 
-# 3. Running locally
+# Run locally
 node dist/index.js
 ```
 
-## Usage Tips
-- **Search Reddit**: "Search Reddit for 'Best budget keyboards' in r/MechanicalKeyboards"
-- **Find Leads**: "Monitor Reddit for people looking for 'Logo Design' in the last 24 hours."
+## 🤝 Contributing
+Contributions are welcome! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+
+## 📄 License
+MIT License - see [LICENSE](LICENSE) for details.
+
+---
+<p align="center">
+  Built with ❤️ by <a href="https://github.com/mypracticaltools">Practical Tools</a>
+</p>
