@@ -1,0 +1,22 @@
+{
+    "name": "reddit-mcp",
+    "version": "1.0.0",
+    "description": "Reddit MCP Server via Apify",
+    "main": "build/index.js",
+    "type": "module",
+    "scripts": {
+        "build": "tsc",
+        "start": "node build/index.js",
+        "dev": "ts-node src/index.ts"
+    },
+    "dependencies": {
+        "@modelcontextprotocol/sdk": "latest",
+        "apify-client": "latest",
+        "dotenv": "latest",
+        "zod": "latest"
+    },
+    "devDependencies": {
+        "@types/node": "^20.0.0",
+        "typescript": "^5.0.0"
+    }
+}
