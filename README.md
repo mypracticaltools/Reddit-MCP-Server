@@ -7,7 +7,8 @@ An MCP server that allows AI agents to search Reddit or find specific leads by d
 - **`reddit_fast_search`**: Quickly search for Reddit posts, comments, or users.
 - **`reddit_lead_monitor`**: Find high-intent leads or brand mentions while filtering out noise.
 
----
+### 🚀 Quick Links
+[Claude Desktop](#1-claude-desktop-macoswindows) | [Cursor IDE](#2-cursor-ide) | [Windsurf](#3-windsurf) | [VS Code](#4-vs-code-github-copilot-agent-mode) | [Claude Code](#5-claude-code-cli)
 
 ---
 
@@ -112,7 +113,7 @@ Add the following to your `claude_desktop_config.json`:
 ### 5. Claude Code (CLI)
 When running `claude-code`, you can specify the MCP server:
 ```bash
-claude-code --mcp reddit-apify="node /ABSOLUTE/PATH/TO/PROJECT/build/index.js" --env APIFY_API_TOKEN=YOUR_TOKEN
+claude-code --mcp reddit-mcp="node /ABSOLUTE/PATH/TO/PROJECT/build/index.js" --env APIFY_API_TOKEN=YOUR_TOKEN
 ```
 
 ### 6. ChatGPT & Lovable (via Bridge)
