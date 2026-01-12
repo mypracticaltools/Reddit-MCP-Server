@@ -1,4 +1,4 @@
-# Reddit MCP Server (Apify Wrapper)
+# Reddit MCP Server 
 
 An MCP server that allows AI agents to search Reddit or find specific leads by delegating the scraping task to Apify cloud actors.
 
