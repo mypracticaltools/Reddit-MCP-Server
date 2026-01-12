@@ -4,7 +4,7 @@
     "description": "Reddit MCP Server via Apify",
     "main": "dist/index.js",
     "bin": {
-        "reddit-mcp": "./dist/index.js"
+        "reddit-mcp": "dist/index.js"
     },
     "files": [
         "dist"

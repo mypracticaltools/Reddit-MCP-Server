@@ -14,29 +14,46 @@ An MCP server that allows AI agents to search Reddit or find specific leads by d
 
 ## ⚡️ Frictionless Installation (Recommended)
 
-Choose your platform to install **Reddit MCP** in seconds:
+Since the package is published on NPM, you can install and run it without cloning the repository!
 
-### 1. Claude Desktop, Cursor, or Windsurf
-Uses **Smithery** to automatically configure your apps:
+### 1. Claude Desktop (macOS/Windows)
+Add this to your `claude_desktop_config.json`:
 
-- **Claude Desktop:** `npx @smithery/cli install @practicaltools/reddit-mcp-server --config "{ \"APIFY_API_TOKEN\": \"YOUR_TOKEN\" }"`
-- **Cursor IDE:** `npx @smithery/cli install @practicaltools/reddit-mcp-server --client cursor --config "{ \"APIFY_API_TOKEN\": \"YOUR_TOKEN\" }"`
-- **Windsurf:** `npx @smithery/cli install @practicaltools/reddit-mcp-server --client windsurf --config "{ \"APIFY_API_TOKEN\": \"YOUR_TOKEN\" }"`
-
-### 2. Claude Code (CLI)
-Just run this one-liner in your terminal:
-```bash
-claude-code --mcp @practicaltools/reddit-mcp-server="node /ABSOLUTE/PATH/TO/PROJECT/dist/index.js" --env APIFY_API_TOKEN=YOUR_TOKEN
-```
-
-### 3. VS Code (Copilot Agent)
-Copy this to your `.vscode/mcp.json`:
 ```json
 {
   "mcpServers": {
-    "@practicaltools/reddit-mcp-server": {
-      "command": "node",
-      "args": ["/ABSOLUTE/PATH/TO/PROJECT/dist/index.js"],
+    "reddit-mcp": {
+      "command": "npx",
+      "args": ["-y", "@practicaltools/reddit-mcp-server"],
+      "env": {
+        "APIFY_API_TOKEN": "YOUR_APIFY_TOKEN"
+      }
+    }
+  }
+}
+```
+
+### 2. Cursor IDE & Windsurf
+1. Open **Settings** -> **MCP Servers**.
+2. Add a new server:
+   - **Name**: `Reddit MCP`
+   - **Type**: `stdio`
+   - **Command**: `npx -y @practicaltools/reddit-mcp-server`
+   - **Env**: `APIFY_API_TOKEN=YOUR_TOKEN`
+
+### 3. Claude Code (CLI)
+```bash
+claude-code --mcp @practicaltools/reddit-mcp-server="npx -y @practicaltools/reddit-mcp-server" --env APIFY_API_TOKEN=YOUR_TOKEN
+```
+
+### 4. VS Code (Copilot Agent)
+Add to `.vscode/mcp.json`:
+```json
+{
+  "mcpServers": {
+    "reddit-mcp": {
+      "command": "npx",
+      "args": ["-y", "@practicaltools/reddit-mcp-server"],
       "env": { "APIFY_API_TOKEN": "YOUR_TOKEN" }
     }
   }
@@ -59,16 +76,16 @@ To use this server, you need an Apify API token.
 ## 🚀 Multi-Platform Setup
 
 ### 1. Claude Desktop (macOS/Windows)
-Add the following to your `claude_desktop_config.json`:
+Add this to your `claude_desktop_config.json`:
 - **macOS**: `~/Library/Application Support/Claude/claude_desktop_config.json`
 - **Windows**: `%APPDATA%\Claude\claude_desktop_config.json`
 
 ```json
 {
   "mcpServers": {
-    "@practicaltools/reddit-mcp-server": {
-      "command": "node",
-      "args": ["/ABSOLUTE/PATH/TO/PROJECT/dist/index.js"],
+    "reddit-mcp": {
+      "command": "npx",
+      "args": ["-y", "@practicaltools/reddit-mcp-server"],
       "env": {
         "APIFY_API_TOKEN": "YOUR_APIFY_TOKEN"
       }
@@ -82,52 +99,48 @@ Add the following to your `claude_desktop_config.json`:
 2. Go to **Features** -> **MCP Servers**.
 3. Click **+ Add New MCP Server**.
 4. Set:
-   - **Name**: `Reddit Apify`
+   - **Name**: `Reddit MCP`
    - **Type**: `stdio`
-   - **Command**: `node /ABSOLUTE/PATH/TO/PROJECT/dist/index.js`
+   - **Command**: `npx -y @practicaltools/reddit-mcp-server`
    - **Env**: Key=`APIFY_API_TOKEN`, Value=`YOUR_TOKEN`
 
 ### 3. Windsurf
 1. Open **Settings** -> **MCP**.
 2. Click **Add Server**.
-3. Enter the configuration similar to Cursor (Stdio mode).
+3. Set **Command**: `npx -y @practicaltools/reddit-mcp-server`
+4. Add Environment Variable: `APIFY_API_TOKEN=YOUR_TOKEN`
 
 ### 4. VS Code (GitHub Copilot Agent Mode)
 1. Ensure you have the **GitHub Copilot Chat** extension installed.
-2. Create a file named `.vscode/mcp.json` in your project root:
+2. Create/Update `.vscode/mcp.json`:
 ```json
 {
   "mcpServers": {
-    "@practicaltools/reddit-mcp-server": {
-      "command": "node",
-      "args": ["/ABSOLUTE/PATH/TO/PROJECT/dist/index.js"],
-      "env": {
-        "APIFY_API_TOKEN": "YOUR_APIFY_TOKEN"
-      }
+    "reddit-mcp": {
+      "command": "npx",
+      "args": ["-y", "@practicaltools/reddit-mcp-server"],
+      "env": { "APIFY_API_TOKEN": "YOUR_TOKEN" }
     }
   }
 }
 ```
-3. Enable "MCP Support" in VS Code settings.
 
 ### 5. Claude Code (CLI)
-When running `claude-code`, you can specify the MCP server:
 ```bash
-claude-code --mcp @practicaltools/reddit-mcp-server="node /ABSOLUTE/PATH/TO/PROJECT/dist/index.js" --env APIFY_API_TOKEN=YOUR_TOKEN
+claude-code --mcp @practicaltools/reddit-mcp-server="npx -y @practicaltools/reddit-mcp-server" --env APIFY_API_TOKEN=YOUR_TOKEN
 ```
 
 ### 6. ChatGPT & Lovable (via Bridge)
 ChatGPT and Lovable do not natively support external MCP servers yet. To use them, you can use a bridging tool like [mcp-bridge](https://github.com/lastmile-ai/mcp-bridge) which exposes the tools as GPT Actions or a local API that Lovable can interact with.
 
 ### 7. Antigravity & Agentic Frameworks
-To use this server with agentic coding assistants like Antigravity:
-1. Ensure the server is built (`npm run build`).
-2. Add the server information to your agent's configuration (usually a `.json` file or via a command).
-3. The agent will then be able to call `reddit_fast_search` and `reddit_lead_monitor` directly.
+To use this server with agentic coding assistants like Antigravity, simply use the `npx` command in your agent's configuration. The agent will then be able to call `reddit_fast_search` and `reddit_lead_monitor` directly.
 
 ---
 
-## 🛠 Development
+## 🛠 Local Development
+
+If you want to run the server from source:
 
 ```bash
 # 1. Install dependencies
@@ -136,8 +149,8 @@ npm install
 # 2. Build for production (Generates dist/index.js)
 npm run build
 
-# 3. Running in dev mode
-npm run dev
+# 3. Running locally
+node dist/index.js
 ```
 
 ## Usage Tips
