@@ -1,15 +1,15 @@
 {
     "name": "@practicaltools/reddit-mcp-server",
-    "version": "1.0.5",
+    "version": "1.0.7",
     "mcpName": "io.github.mypracticaltools/reddit-mcp-server",
     "description": "Reddit MCP Server via Apify",
     "repository": {
         "type": "git",
-        "url": "https://github.com/mypracticaltools/Reddit-MCP-Server.git"
+        "url": "git+https://github.com/mypracticaltools/Reddit-MCP-Server.git"
     },
     "main": "dist/index.js",
     "bin": {
-        "reddit-mcp": "dist/index.js"
+        "reddit-mcp-server": "dist/index.js"
     },
     "files": [
         "dist",
@@ -21,15 +21,20 @@
     "scripts": {
         "build": "tsc",
         "start": "node dist/index.js",
+        "start:sse": "node dist/index.js --sse",
         "dev": "ts-node src/index.ts"
     },
     "dependencies": {
         "@modelcontextprotocol/sdk": "latest",
         "apify-client": "latest",
+        "cors": "^2.8.5",
         "dotenv": "latest",
+        "express": "^5.2.1",
         "zod": "latest"
     },
     "devDependencies": {
+        "@types/cors": "^2.8.19",
+        "@types/express": "^5.0.6",
         "@types/node": "^20.0.0",
         "typescript": "^5.0.0"
     }

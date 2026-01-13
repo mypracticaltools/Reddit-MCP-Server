@@ -1,6 +1,9 @@
 #!/usr/bin/env node
 import { Server } from "@modelcontextprotocol/sdk/server/index.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
+import { SSEServerTransport } from "@modelcontextprotocol/sdk/server/sse.js";
+import express from "express";
+import cors from "cors";
 import {
     CallToolRequestSchema,
     ListToolsRequestSchema,
@@ -175,9 +178,37 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
  * Server Startup
  */
 async function main() {
-    const transport = new StdioServerTransport();
-    await server.connect(transport);
-    console.error("Reddit MCP server running on stdio");
+    const isSse = process.argv.includes("--sse");
+
+    if (isSse) {
+        const app = express();
+        app.use(cors());
+
+        let transport: SSEServerTransport | null = null;
+
+        app.get("/sse", async (req, res) => {
+            console.error("New SSE connection established");
+            transport = new SSEServerTransport("/messages", res);
+            await server.connect(transport);
+        });
+
+        app.post("/messages", async (req, res) => {
+            if (transport) {
+                await transport.handlePostMessage(req, res);
+            } else {
+                res.status(400).send("No active SSE transport");
+            }
+        });
+
+        const PORT = process.env.PORT || 3001;
+        app.listen(PORT, () => {
+            console.error(`Reddit MCP server running on SSE at http://localhost:${PORT}/sse`);
+        });
+    } else {
+        const transport = new StdioServerTransport();
+        await server.connect(transport);
+        console.error("Reddit MCP server running on stdio");
+    }
 }
 
 main().catch((error) => {
