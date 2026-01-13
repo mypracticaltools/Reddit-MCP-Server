@@ -1,6 +1,6 @@
 {
     "name": "@practicaltools/reddit-mcp-server",
-    "version": "1.0.7",
+    "version": "1.0.8",
     "mcpName": "io.github.mypracticaltools/reddit-mcp-server",
     "description": "Reddit MCP Server via Apify",
     "repository": {
@@ -9,7 +9,7 @@
     },
     "main": "dist/index.js",
     "bin": {
-        "reddit-mcp-server": "dist/index.js"
+        "reddit-mcp-server": "./dist/index.js"
     },
     "files": [
         "dist",
@@ -20,6 +20,7 @@
     "type": "module",
     "scripts": {
         "build": "tsc",
+        "prepublishOnly": "npm run build",
         "start": "node dist/index.js",
         "start:sse": "node dist/index.js --sse",
         "dev": "ts-node src/index.ts"
